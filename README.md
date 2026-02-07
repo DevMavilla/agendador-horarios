@@ -104,7 +104,7 @@ src/
     └─ application.properties
 ```
 
-Essa organização facilita testes, manutenção e escalabilidade da API. ([GitHub][2])
+Essa organização facilita testes, manutenção e escalabilidade da API.
 
 ---
 
@@ -118,15 +118,6 @@ Inclua testes de unidade e integração usando:
 
 ---
 
-## 📘 Documentação da API
-
-Recomendo adicionar OpenAPI/Swagger para auto-documentar seus endpoints. Exemplo:
-
-```bash
-http://localhost:8080/swagger-ui.html
-```
-
----
 
 ## 🧩 Contribuições
 
