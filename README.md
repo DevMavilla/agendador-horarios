@@ -116,7 +116,16 @@ Inclua testes de unidade e integração usando:
 * Spring Boot Test
 * (Opcional) Testcontainers ou H2 para testes de banco
 
+---## 📘 Documentação da API
+
+Recomendo adicionar OpenAPI/Swagger para auto-documentar seus endpoints. Exemplo:
+
+```bash
+http://localhost:8080/swagger-ui.html
+```
+
 ---
+
 
 
 ## 🧩 Contribuições
