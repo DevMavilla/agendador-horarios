@@ -1,0 +1,65 @@
+.editRow{
+  margin-top: 12px;
+  text-align: left;
+}
+
+.label{
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.chips{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip{
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #0b0b0b;           /* harmoniza com seu edit background */
+  color: var(--txt);
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: .2px;
+  line-height: 1;
+  white-space: nowrap;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, background .15s ease;
+}
+
+.chip:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 0 18px rgba(244,196,48,.45);
+  border-color: rgba(244,196,48,.8);
+}
+
+.chip.on{
+  background: rgba(244,196,48,.14);
+  border-color: rgba(244,196,48,1);
+  box-shadow: 0 0 22px rgba(244,196,48,.65);
+  color: #fff;
+}
+
+/* acessibilidade / sensação de produto */
+.chip:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(244,196,48,.28), 0 0 18px rgba(244,196,48,.35);
+  border-color: rgba(244,196,48,.95);
+}
+
+.hint{
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Card entra em modo edição (sem outline, mais premium e respeita radius) */
+.item.editing{
+  border-color: rgba(244,196,48,.35);
+  box-shadow: 0 0 0 2px rgba(244,196,48,.18), 0 0 35px rgba(244,196,48,.22);
+}

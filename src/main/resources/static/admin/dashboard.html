@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin • Agenda do Dia</title>
+    <link rel="stylesheet" href="admin.css" />
+</head>
+<body class="admin">
+<header class="topbar">
+    <div>💈 Admin • Agenda</div>
+    <button class="ghost" onclick="logout()">Sair</button>
+</header>
+
+<main class="wrap">
+    <section class="panel">
+        <h2>Agenda do dia</h2>
+        <div class="row">
+            <input id="data" type="date" />
+            <button onclick="carregar()">Carregar</button>
+        </div>
+        <div id="lista" class="lista"></div>
+    </section>
+</main>
+
+<script src="admin.js"></script>
+</body>
+</html>

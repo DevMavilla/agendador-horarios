@@ -23,6 +23,4 @@ public class Agendamento {
     private String telefoneCliente;
     private LocalDateTime dataIncercao = LocalDateTime.now();
 
-
-
 }

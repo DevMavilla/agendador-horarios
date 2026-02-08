@@ -34,6 +34,11 @@ public class AgendamentoService {
 
     }
 
+    public void deletarPorId(Long id) {
+        agendamentoRepository.deleteById(id);
+    }
+
+
     public List<Agendamento> buscarAgendamentosDia(LocalDate data){
         LocalDateTime primeiraHoraDia = data.atStartOfDay();
         LocalDateTime ultimaHoraDia = data.atTime(23, 59, 59);
@@ -50,4 +55,19 @@ public class AgendamentoService {
        agendamento.setId(agenda.getId());
        return  agendamentoRepository.save(agendamento);
     }
+
+    public Agendamento atualizarPorId(Long id, Agendamento novo) {
+
+        Agendamento existente = agendamentoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Agendamento não encontrado"));
+
+        existente.setCliente(novo.getCliente());
+        existente.setTelefoneCliente(novo.getTelefoneCliente());
+        existente.setServico(novo.getServico());
+        existente.setProfissional(novo.getProfissional());
+        existente.setDataHoraAgendamento(novo.getDataHoraAgendamento());
+
+        return agendamentoRepository.save(existente);
+    }
+
 }

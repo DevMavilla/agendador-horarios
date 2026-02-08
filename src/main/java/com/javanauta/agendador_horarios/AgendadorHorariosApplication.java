@@ -9,5 +9,4 @@ public class AgendadorHorariosApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AgendadorHorariosApplication.class, args);
 	}
-
 }

@@ -18,18 +18,27 @@ public class AgendamentoController {
     private final AgendamentoService agendamentoService;
 
     @PostMapping
-    public ResponseEntity<Agendamento> salvarAgendamento(@RequestBody Agendamento agendamento){
-        return ResponseEntity.accepted().body(agendamentoService.salvarAgendamento(agendamento));
+    public ResponseEntity<Agendamento> salvarAgendamento(
+            @RequestBody Agendamento agendamento){
+        return ResponseEntity.accepted()
+                .body(agendamentoService.salvarAgendamento(agendamento));
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deletarAgendamento
-            (@RequestBody String cliente,
+    public ResponseEntity<Void> deletarAgendamento(
+            @RequestBody String cliente,
             @RequestParam LocalDateTime dataHoraAgendamento){
 
        agendamentoService.deletarAgendamento(dataHoraAgendamento, cliente);
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarPorId(@PathVariable Long id) {
+        agendamentoService.deletarPorId(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
     @GetMapping
     public ResponseEntity<List<Agendamento>> buscarAgendamentosDia(@RequestParam LocalDate data){
@@ -44,5 +53,16 @@ public class AgendamentoController {
         return ResponseEntity.accepted().body(agendamentoService.alterarAgendamento(agendamento,
                 cliente, dataHoraAgendamento));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Agendamento> atualizarPorId(
+            @PathVariable Long id,
+            @RequestBody Agendamento novo) {
+
+        return ResponseEntity.ok(
+                agendamentoService.atualizarPorId(id, novo)
+        );
+    }
+
 }
 

@@ -2,31 +2,100 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Barbearia - Agenda</title>
+    <title>Barbearia Navalha de Ouro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>💈 Agenda da Barbearia</h1>
+<!-- HEADER -->
+<header class="header">
+    <div class="logo">💈 Navalha de Ouro</div>
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#experiencia">Experiência</a>
+        <a href="#agendamento">Agendar</a>
+    </nav>
+</header>
 
-<section>
-    <h2>Novo Agendamento</h2>
-
-    <input id="cliente" placeholder="Cliente">
-    <input id="telefone" placeholder="Telefone">
-    <input id="servico" placeholder="Serviço">
-    <input id="profissional" placeholder="Barbeiro">
-    <input id="dataHora" type="datetime-local">
-
-    <button onclick="criar()">Agendar</button>
+<!-- HERO -->
+<section id="inicio" class="hero">
+    <div class="hero-text">
+        <h1>Aqui você não agenda.</h1>
+        <h1>Você escolhe seu estilo.</h1>
+        <p>Uma experiência diferente de tudo que você já viu.</p>
+        <button onclick="irParaNome()">Começar</button>
+    </div>
 </section>
 
-<section>
-    <h2>Agenda do Dia</h2>
-    <input type="date" id="dataBusca">
-    <button onclick="buscar()">Buscar</button>
+<!-- ETAPA 1 - NOME -->
+<section id="experiencia" class="step">
+    <h2>Antes de tudo…</h2>
+    <p>Como podemos te chamar?</p>
 
-    <ul id="lista"></ul>
+    <input id="inputNome" placeholder="Digite seu nome">
+    <button onclick="salvarNome()">Continuar</button>
+</section>
+
+<!-- ETAPA 2 - BARBEIRO -->
+<section id="step-barbeiro" class="step hidden">
+    <h2 id="textoBarbeiro"></h2>
+
+    <div class="cards">
+        <div class="card selectable" onclick="escolherBarbeiro('João')">
+            <img src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba6">
+            <p>João</p>
+        </div>
+
+        <div class="card selectable" onclick="escolherBarbeiro('Lucas')">
+            <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e">
+            <p>Samara</p>
+        </div>
+    </div>
+</section>
+
+<!-- ETAPA 3 - SERVIÇO -->
+<section id="step-servico" class="step hidden">
+    <h2 id="textoServico"></h2>
+
+    <div class="cards">
+        <div class="card selectable" onclick="escolherServico('Corte Masculino')">
+            <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a">
+            <p>Corte Masculino</p>
+        </div>
+
+        <div class="card selectable" onclick="escolherServico('Barba Premium')">
+            <img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186">
+            <p>Barba Premium</p>
+        </div>
+
+        <div class="card selectable" onclick="escolherServico('Combo Corte + Barba')">
+            <img src="https://images.unsplash.com/photo-1621607512214-68297480165e">
+            <p>Combo Corte + Barba</p>
+        </div>
+    </div>
+</section>
+
+<!-- ETAPA 4 - DATA -->
+<section id="step-data" class="step hidden">
+    <h2 id="textoData"></h2>
+
+    <input type="datetime-local" id="dataHora">
+    <button onclick="confirmarData()">Continuar</button>
+</section>
+
+<!-- ETAPA 5 - CONFIRMAÇÃO -->
+<section id="agendamento" class="step hidden">
+    <h2>Resumo do seu agendamento</h2>
+
+    <div class="resumo">
+        <p><strong>Cliente:</strong> <span id="r-nome"></span></p>
+        <p><strong>Barbeiro:</strong> <span id="r-barbeiro"></span></p>
+        <p><strong>Serviço:</strong> <span id="r-servico"></span></p>
+        <p><strong>Data:</strong> <span id="r-data"></span></p>
+    </div>
+
+    <button onclick="finalizar()">Confirmar Agendamento</button>
 </section>
 
 <script src="script.js"></script>
