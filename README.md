@@ -1,141 +1,168 @@
-# Agendador de Horários  
-🚀 *Meu primeiro backend com Java, Spring Boot e JPA*
+💈 Agendador de Horários — Barbearia
 
-Uma API REST simples para agendar horários — desenvolvida com foco em boas práticas de backend em Java e arquitetura limpa.
+API REST + Interface Web com Spring Boot
 
-Este projeto foi construído como um exercício prático para dominar o desenvolvimento de APIs com Spring Boot, Spring Data JPA e persistência de dados. Ele demonstra rotas CRUD, persistência com banco relacional e estrutura RESTful.
+Este projeto é o meu primeiro sistema backend completo utilizando Java, Spring Boot, JPA e banco H2, integrado a uma interface web simples (HTML, CSS e JavaScript) servida pelo próprio Spring Boot.
 
----
+O objetivo principal é entender o fluxo real de uma aplicação web:
+frontend → backend → banco de dados.
 
-## 🛠 Tecnologias
+🎯 Objetivo do Projeto
 
-Esse projeto foi desenvolvido com:
+Aprender Spring Boot na prática
 
-| Tecnologia | Versão / Descrição |
-|------------|--------------------|
-| Java       | 17+ / Linguagem principal |
-| Spring Boot | Framework backend |
-| Spring Data JPA | Integração com JPA/Hibernate |
-| Banco de Dados | (ex: H2, PostgreSQL, MySQL — conforme configuração) |
-| Maven      | Gerenciamento de dependências |
-| REST API   | Endpoints para agendamento de horários |
+Entender arquitetura em camadas (Controller, Service, Repository)
 
----
+Trabalhar com JPA/Hibernate sem escrever SQL
 
-## 📌 Requisitos
+Criar regras de negócio reais (agenda com conflito de horário)
 
-Antes de rodar localmente:
+Integrar backend com frontend via HTTP (fetch API)
 
-- Java JDK 17 ou superior
-- Maven 3.6+
-- Banco de dados configurado (H2, PostgreSQL, MySQL, etc.)
+Simular um sistema real de agenda para barbearia
 
----
+🧠 O que o sistema faz
 
-## ⚡ Instalação
+O sistema permite:
+
+Criar agendamentos
+
+Listar agendamentos por dia
+
+Editar agendamentos existentes
+
+Cancelar agendamentos
+
+Evitar conflitos de horário para o mesmo serviço
+
+Toda a regra de negócio está centralizada na camada Service.
+
+🏗️ Arquitetura
+
+O projeto segue uma arquitetura em camadas:
+
+Frontend (HTML/JS)
+↓
+Controller (REST)
+↓
+Service (Regras de negócio)
+↓
+Repository (JPA)
+↓
+H2 Database
+
+Responsabilidades
+
+Controller: recebe requisições HTTP
+
+Service: valida regras e orquestra a lógica
+
+Repository: acesso ao banco via JPA
+
+Entity: mapeamento objeto-relacional
+
+Static: interface web (HTML/CSS/JS)
+
+🌐 Interface Web
+
+A interface web está localizada em:
+
+src/main/resources/static
+
+
+Contém:
+
+index.html
+
+style.css
+
+script.js
+
+Essa interface é servida automaticamente pelo Spring Boot.
+
+⚠️ Importante:
+A página NÃO é exibida pelo GitHub.
+Ela só funciona quando a aplicação está rodando.
+
+▶️ Como executar o projeto
+Pré-requisitos
+
+Java JDK 17+
+
+Maven
+
+IDE ou terminal
+
+Passos
 
 Clone o repositório:
 
-```bash
 git clone https://github.com/DevMavilla/agendador-horarios.git
+
+
+Entre na pasta do projeto:
+
 cd agendador-horarios
-````
 
-Instale as dependências e compile o projeto:
 
-```bash
-mvn clean install
-```
+Execute a aplicação:
 
-Configure o banco de dados em `src/main/resources/application.properties` com suas credenciais.
-
-Por exemplo (H2 em memória):
-
-```properties
-spring.datasource.url=jdbc:h2:mem:db
-spring.datasource.driverClassName=org.h2.Driver
-spring.jpa.hibernate.ddl-auto=update
-```
-
----
-
-## ▶️ Executando
-
-Para iniciar a API localmente:
-
-```bash
 mvn spring-boot:run
-```
-
-Após iniciado, a API estará disponível em:
-
-```
-http://localhost:8080
-```
-
----
-
-## 🔗 Endpoints Básicos
-
-| Método | Rota                 | Descrição                   |
-| ------ | -------------------- | --------------------------- |
-| GET    | `/agendamentos`      | Lista todos os agendamentos |
-| GET    | `/agendamentos/{id}` | Busca agendamento por ID    |
-| POST   | `/agendamentos`      | Cria um novo agendamento    |
-| PUT    | `/agendamentos/{id}` | Atualiza um agendamento     |
-| DELETE | `/agendamentos/{id}` | Remove um agendamento       |
-
-> Adapte conforme a estrutura real dos seus controllers.
-
----
-
-## 💡 Estrutura do Projeto
-
-O projeto segue um padrão comum de backend em Spring Boot:
-
-```
-src/
-├─ main/java
-│   ├─ controller — REST endpoints
-│   ├─ service — regras de negócio
-│   ├─ repository — interfaces JPA
-│   └─ model — entidades
-└─ resources
-    └─ application.properties
-```
-
-Essa organização facilita testes, manutenção e escalabilidade da API.
-
----
-
-## 🧪 Testes
-
-Inclua testes de unidade e integração usando:
-
-* JUnit 5
-* Spring Boot Test
-* (Opcional) Testcontainers ou H2 para testes de banco
-
----## 📘 Documentação da API
-
-Recomendo adicionar OpenAPI/Swagger para auto-documentar seus endpoints. Exemplo:
-
-```bash
-http://localhost:8080/swagger-ui.html
-```
-
----
 
 
+Acesse no navegador:
 
-## 🧩 Contribuições
+http://localhost:8080/
 
-Contribuições são bem-vindas! ✨
+🔗 Endpoints da API
+Método	Endpoint	Descrição
+POST	/agendamentos	Criar agendamento
+GET	/agendamentos?data=YYYY-MM-DD	Listar agendamentos do dia
+PUT	/agendamentos/{id}	Editar agendamento
+DELETE	/agendamentos/{id}	Excluir agendamento
+🗄️ Banco de Dados
 
-Se quiser sugerir melhorias, abrir issues ou enviar PRs:
+Utiliza H2 Database em memória
 
-1. Fork este repositório
-2. Crie uma branch para sua feature (`feature/nova-funcionalidade`)
-3. Faça commit com mensagens claras
-4. Abra um Pull Request
+Os dados são perdidos ao reiniciar a aplicação
 
+Escolhido para facilitar aprendizado e testes
+
+🚧 Limitações Atuais
+
+Este projeto não possui:
+
+Autenticação / autorização
+
+Banco persistente (PostgreSQL/MySQL)
+
+Testes automatizados
+
+Validações com Bean Validation
+
+Swagger/OpenAPI
+
+Esses pontos ficaram fora para manter o foco no aprendizado dos fundamentos.
+
+🚀 Próximos Passos Planejados
+
+Adicionar Swagger/OpenAPI
+
+Persistir dados em banco relacional
+
+Implementar validações
+
+Melhorar UX do frontend
+
+Criar testes automatizados
+
+Fazer deploy em nuvem
+
+📌 Observação Importante sobre GitHub
+
+O GitHub não executa aplicações Spring Boot.
+Ao clonar este repositório, é necessário rodar o projeto localmente para visualizar a interface web.
+
+🧠 Considerações Finais
+
+Este projeto representa meu primeiro contato real com desenvolvimento backend em Java, integrando frontend, backend e banco de dados, com foco em compreender como sistemas web funcionam de ponta a ponta.
